@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <script src="jquery.js"></script>
     <script src="scripts.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
+
     <title>SALARY CALCULATOR</title>
   </head>
   <body>
@@ -13,7 +15,7 @@
     <div>
         <h3>Add Employee</h3>
         <input placeholder="First Name" id="firstName" type="text"/>
-        <input placeholder="Last Name" id="lasttName" type="text"/>
+        <input placeholder="Last Name" id="lastName" type="text"/>
         <input placeholder="ID" id="employeeId" type="number"/>
         <input placeholder="Title" id="title" type="text"/>
         <input placeholder="Annual Salary" id="annualSalary" type="number"/>
@@ -27,18 +29,19 @@
     
     <table id="tableTemplate">
         <tr>
-            <td>First name</td>
-            <td>Last Name</td>
-            <td>Id</td>
-            <td>Annual Salary</td>
-            <td>  </td>
+            <td>FIRST NAME</td>
+            <td>LAST NAME</td>
+            <td>ID</td>
+            <td>TITLE</td>
+            <td>ANNUAL SALARY</td>
+            <td>DELETE OPTION  </td>
         </tr>
     </table>
     <table id="employeeTable">
 
     </table>
     <div>
-        <h3 class="monthlyTotal">Total Monthly: 0</h3> 
+        <h4 id="monthlyTotal">Total Monthly: <span id="monthlyBudgetOut"></span></h3> 
     </div>
   </body>
 </html>
