@@ -23,7 +23,7 @@ $(document).ready(readyNow);
 function readyNow() {
   console.log("DOM is loaded! In readyNow!");
 $('#submitBtn').on('click', addEmployee);
-
+$('#employeeTable').on('click', '.deleteBtn', deleteEmployee);
 
 
 }
@@ -31,6 +31,8 @@ $('#submitBtn').on('click', addEmployee);
 
 //an array to store all employees
 let employeeList = [];
+let monthlyEmployeeCost;
+
 
 function addEmployee () {
     console.log('Inside addEmployee', addEmployee);
@@ -67,7 +69,7 @@ function addEmployee () {
         //add new employee to main employeelist.
         employeeList.push(newEmployee);
 
-        //calculateRemainingBudget();
+        calculateRemainingBudget();
 
         resetInputFields()
     }   else {
@@ -77,7 +79,7 @@ function addEmployee () {
 
 
 
-    
+
     console.log('EmployeeList: ', employeeList)
 
     render();
@@ -113,12 +115,14 @@ function calculateRemainingBudget () {
 
     //To-Do, if entered in wont delete
     //create a condtional that if the monthlyEmployee cost is over 20000, then red background.
-    // if (monthlyEmployeeCost > 20000) {
+    if (monthlyEmployeeCost > 20000) {
     //     $('h4').addClass('newTotal');
-    // }
-    // else {
-    //     $('h4').removeClass('newTotal');
-    // }
+    //      //or use 
+           $('h4').css('background-color', 'red');  
+    }
+    else {
+        $('h4').css('background-color', 'transparent');  
+    }
 
     let eel = $('#monthlyBudgetOut');
     console.log('Monthly cost are: ', monthlyEmployeeCost);
@@ -161,7 +165,29 @@ function render () {
     }
 
 
+
 }
 
+function deleteEmployee () {
+    console.log('Inside of deleteEmployee: ', deleteEmployee);
+    //create newEmployeeList
+    let newEmployeeList = [];
+
+    let itemToRemove = Number ($(this).parent().parent().attr('id'))
+    // loop to find everything except the specifed number
+    for (i=0; i<employeeList.length; i++) {
+        if (itemToRemove !== i) { // creates a new array with everything except whats found.
+        console.log('This item to be removed: ', itemToRemove);
+        newEmployeeList.push(employeeList[i]); 
+        }
+    }
+    //monthlyEmployeeCost -= (Number(employeeList[i].annualsalary))/12
+    employeeList = newEmployeeList;
+
+    //after creating new employeelist, will need to recalcuate the remaining balance.
+    calculateRemainingBudget();
+    //render to display changes
+    render();
+}
 
 
